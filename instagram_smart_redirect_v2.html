@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Intelligente Instagram</title>
+  <script>
+    window.onload = function() {
+      var start = Date.now();
+      // Deep link per iOS
+      var appScheme = 'instagram://user?username=gonzo.riccardo';
+      // Intent per Android
+      var intentUrl = 'intent://instagram.com/_u/gonzo.riccardo/#Intent;package=com.instagram.android;scheme=https;end;';
+      // Scegli la modalità in base alla piattaforma
+      var urlToOpen = /Android/i.test(navigator.userAgent) ? intentUrl : appScheme;
+      // Prova ad aprire l'app o intent
+      window.location = urlToOpen;
+      // Dopo 1.2s fallback al browser se l'app non si apre
+      setTimeout(function() {
+        if (Date.now() - start < 1200) {
+          window.location = 'https://www.instagram.com/gonzo.riccardo';
+        }
+      }, 1200);
+    };
+  </script>
+</head>
+<body>
+  <p>Reindirizzamento in corso...</p>
+  <p>Se non vieni reindirizzato automaticamente, <a href="https://www.instagram.com/gonzo.riccardo">clicca qui</a>.</p>
+</body>
+</html>
